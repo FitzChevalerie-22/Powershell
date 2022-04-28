@@ -1,0 +1,9 @@
+# Import the AD module to the session
+
+Import-Module ActiveDirectory
+
+#Search for the users with password never expire
+
+Get-AdUser -filter { passwordNeverExpires -eq $true  -and enabled -eq $true } -searchbase "OU=,OU=,OU=,DC=,DC=" 
+| Select Name, DistinguishedName 
+| ConvertTo-Json
